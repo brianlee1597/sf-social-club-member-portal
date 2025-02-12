@@ -82,4 +82,7 @@ pytest
 * From the GCP [console](https://console.cloud.google.com/apis/credentials?project=sf-social-club) download the credentials.json file.
 * save it in the api directory
 
+## Sync Partiful with google calendar
+[instruction](https://help.partiful.com/hc/en-us/articles/26025133867035-Sync-to-Google-Calendar#:~:text=to%20do%20this.-,Note%3A%20Due%20to%20limitations%20of%20the%20Google%20Calendar%20mobile%20app,information%20roughly%20every%2024%20hours.)
+
 # API Documentation (coming soon)

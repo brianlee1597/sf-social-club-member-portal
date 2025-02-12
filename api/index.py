@@ -3,13 +3,20 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt
 from bson.objectid import ObjectId
-from api.mongodb_client import connector
 from datetime import timedelta
 import json
 from bson import json_util
 import logging
 import bcrypt
 import datetime
+import os
+
+if os.getenv("DEVELOPMENT"):
+    from mongodb_client import connector
+else:
+    from api.mongodb_client import connector
+
+from google_event_reader import calendar_event_extraction
 
 logger = logging.getLogger(__name__)
 
@@ -371,6 +378,16 @@ def scan():
     except Exception as e:
         print(e)
         return jsonify({"message":"Code unrecognized"}), 500
+    
+@app.route("/api/calendar_event_extraction",methods=['GET'])
+def extraction():
+    try:
+        calendar_event_extraction()
+        return jsonify({"success":"events extracted"}), 200
+    except Exception as e:
+        print("failed",e)
+        return jsonify({"failed":"issues with event extraction"}), 500
+
     
 if __name__ == '__main__':
     app.run(debug=True)
