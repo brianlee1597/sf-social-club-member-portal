@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import certifi
 import os
 
-# load_dotenv()
+load_dotenv()
 client = MongoClient()
 
 """
